@@ -1,0 +1,53 @@
+[
+  {
+    "id": "mobibox",
+    "name": "Mobibox",
+    "description": "แอปรวมกระเป๋าเงิน eWallet, เหรียญ, และโซเชียลเน็ตเวิร์ก สำหรับแอฟริกา",
+    "category": "Finance",
+    "tags": ["wallet", "crypto", "social"],
+    "chain": "Polygon",
+    "rating": 4.8,
+    "certification": "Trusted",
+    "badge": {
+      "category": "DeFi",
+      "level": 5
+    },
+    "icon": "assets/icons/mobibox.png",
+    "cover": "assets/images/mobibox-cover.jpg",
+    "link": "app.html?id=mobibox"
+  },
+  {
+    "id": "nova-ai",
+    "name": "Nova AI",
+    "description": "AI ผู้ช่วยด้านการเงิน พร้อมระบบวิเคราะห์ Portfolio บนเชน Ethereum",
+    "category": "AI Assistant",
+    "tags": ["AI", "advisor", "portfolio"],
+    "chain": "Ethereum",
+    "rating": 4.6,
+    "certification": "Certified",
+    "badge": {
+      "category": "Advisor",
+      "level": 4
+    },
+    "icon": "assets/icons/nova-ai.png",
+    "cover": "assets/images/nova-ai-cover.jpg",
+    "link": "app.html?id=nova-ai"
+  },
+  {
+    "id": "dex-hub",
+    "name": "DEX Hub",
+    "description": "ศูนย์รวมตลาดซื้อขายโทเคนแบบกระจายศูนย์ พร้อมเครื่องมือวิเคราะห์กราฟ",
+    "category": "Trading",
+    "tags": ["DEX", "analytics", "DeFi"],
+    "chain": "Polygon",
+    "rating": 4.3,
+    "certification": "Audited",
+    "badge": {
+      "category": "DEX",
+      "level": 3
+    },
+    "icon": "assets/icons/dexhub.png",
+    "cover": "assets/images/dexhub-cover.jpg",
+    "link": "app.html?id=dex-hub"
+  }
+]
