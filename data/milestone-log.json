@@ -1,0 +1,29 @@
+[
+  {
+    "timestamp": "2025-05-25T09:50:45Z",
+    "user": "user1",
+    "milestone": 10,
+    "totalTipReceived": 10,
+    "level": "Bronze",
+    "tokenType": "m_token",
+    "notified": true
+  },
+  {
+    "timestamp": "2025-05-25T10:30:00Z",
+    "user": "user2",
+    "milestone": 50,
+    "totalTipReceived": 50,
+    "level": "Silver",
+    "tokenType": "l_token",
+    "notified": true
+  },
+  {
+    "timestamp": "2025-05-25T11:45:18Z",
+    "user": "user3",
+    "milestone": 100,
+    "totalTipReceived": 102,
+    "level": "Gold",
+    "tokenType": "m_token",
+    "notified": false
+  }
+]
