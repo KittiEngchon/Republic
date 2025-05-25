@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Republic Web3 App Store - Explore decentralized apps powered by AI and community" />
+  <title>Republic App Store</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="libs/ui.js"></script>
+  <script src="libs/wallet.js"></script>
+</head>
+<body>
+  <header>
+    <h1><span class="logo">R</span> Republic</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="chat.html">Chat</a>
+      <a href="ai.html">AI</a>
+      <a href="community.html">Community</a>
+      <a href="feed.html">Feed</a>
+      <a href="call.html">Call</a>
+    </nav>
+    <button id="connectWalletBtn">Connect Wallet</button>
+  </header>
+
+  <main>
+    <section class="app-list" id="appList">
+      <!-- Apps will be loaded here dynamically -->
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Republic. All rights reserved.</p>
+  </footer>
+
+  <script>
+    async function loadApps() {
+      const res = await fetch('data/apps.json');
+      const apps = await res.json();
+      const appList = document.getElementById('appList');
+
+      apps.forEach(app => {
+        const card = document.createElement('div');
+        card.className = 'app-card';
+        card.innerHTML = `
+          <img src="${app.icon}" alt="${app.name}" />
+          <h2>${app.name}</h2>
+          <p>${app.description}</p>
+          <a href="app.html?id=${app.id}">View App</a>
+        `;
+        appList.appendChild(card);
+      });
+    }
+
+    window.onload = loadApps;
+  </script>
+</body>
+</html>
