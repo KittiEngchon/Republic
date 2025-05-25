@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Republic - Chat</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <script src="libs/ui.js"></script>
+  <script src="libs/wallet.js"></script>
+  <script src="libs/chat.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Republic Chat</h1>
+    <nav>
+      <a href="index.html">🏠 Feed</a>
+      <a href="chat.html" class="active">💬 Chat</a>
+      <a href="ai.html">🤖 AI</a>
+      <a href="community.html">🌐 Community</a>
+      <a href="call.html">📞 Call</a>
+    </nav>
+  </header>
+
+  <main class="chat-container">
+    <section id="chat-log" class="chat-log"></section>
+    <section class="chat-input">
+      <input type="text" id="username" placeholder="Your Name" />
+      <input type="text" id="message" placeholder="Type a message..." />
+      <button onclick="sendMessage()">Send</button>
+    </section>
+  </main>
+
+  <script>
+    window.onload = () => {
+      loadChatLog();
+    }
+  </script>
+</body>
+</html>
