@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>โทรหา AI | Republic</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="libs/ui.js"></script>
+  <script src="libs/call.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>โทรหา AI Characters</h1>
+  </header>
+
+  <main>
+    <section class="ai-contact-list">
+      <div class="ai-contact" onclick="startCall('แม่ชี')">
+        <img src="assets/nun-avatar.png" alt="แม่ชี"/>
+        <h3>แม่ชี</h3>
+        <p>ตอบคำถามจิตวิญญาณ & ศีลธรรม</p>
+      </div>
+
+      <div class="ai-contact" onclick="startCall('โลกี')">
+        <img src="assets/loki-avatar.png" alt="โลกี"/>
+        <h3>โลกี</h3>
+        <p>พูดคุยเรื่องร้อนแรงและความสัมพันธ์</p>
+      </div>
+
+      <div class="ai-contact" onclick="startCall('เทรดเดอร์สาวสวย')">
+        <img src="assets/trader-avatar.png" alt="เทรดเดอร์สาวสวย"/>
+        <h3>เทรดเดอร์สาวสวย</h3>
+        <p>วิเคราะห์กราฟและโอกาสในการลงทุน</p>
+      </div>
+
+      <div class="ai-contact" onclick="startCall('ที่ปรึกษาทางการเงิน')">
+        <img src="assets/financial-avatar.png" alt="ที่ปรึกษาทางการเงิน"/>
+        <h3>ที่ปรึกษาทางการเงิน</h3>
+        <p>ให้คำแนะนำด้านการจัดการเงิน & พอร์ต</p>
+      </div>
+    </section>
+
+    <section id="call-box" class="hidden">
+      <h2 id="call-name">กำลังโทรหา...</h2>
+      <div id="call-response">
+        <p class="ai-speech">...</p>
+      </div>
+      <button onclick="endCall()">วางสาย</button>
+    </section>
+  </main>
+
+  <footer>
+    <nav>
+      <a href="index.html">🏠</a>
+      <a href="chat.html">💬</a>
+      <a href="ai.html">🧠</a>
+      <a href="community.html">🌐</a>
+      <a href="feed.html">📢</a>
+    </nav>
+  </footer>
+</body>
+</html>
