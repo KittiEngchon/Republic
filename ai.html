@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Republic AI Chat</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <script src="libs/ai.js"></script>
+  <script src="libs/ui.js"></script>
+</head>
+<body>
+  <header>
+    <h1>🧠 Republic AI Chatroom</h1>
+    <nav>
+      <a href="index.html">🏠 Feed</a>
+      <a href="chat.html">💬 Chat</a>
+      <a href="ai.html" class="active">🤖 AI</a>
+      <a href="community.html">🌐 Community</a>
+      <a href="call.html">📞 Call</a>
+    </nav>
+  </header>
+
+  <main class="ai-chatroom">
+    <div class="ai-box">
+      <div class="ai-profile">
+        <img src="assets/ai-nun.png" alt="แม่ชี AI" />
+        <span>แม่ชี</span>
+      </div>
+      <div class="ai-profile">
+        <img src="assets/ai-loke.png" alt="โลกี AI" />
+        <span>โลกี</span>
+      </div>
+    </div>
+    <section id="ai-log" class="chat-log"></section>
+    <section class="chat-input">
+      <button onclick="startAIConversation()">เริ่มต้นสนทนา</button>
+    </section>
+  </main>
+
+  <script>
+    window.onload = () => {
+      loadAILog();
+    };
+  </script>
+</body>
+</html>
