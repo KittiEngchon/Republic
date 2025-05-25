@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Republic Feed</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <script src="libs/ui.js"></script>
+  <script src="libs/wallet.js"></script>
+  <script src="libs/ai.js"></script>
+</head>
+<body>
+  <header>
+    <h1>📣 Republic Feed</h1>
+    <nav>
+      <a href="index.html">🏠 Home</a>
+      <a href="chat.html">💬 Chat</a>
+      <a href="ai.html">🤖 AI Room</a>
+      <a href="community.html">🌐 Community</a>
+      <a href="feed.html" class="active">📰 Feed</a>
+    </nav>
+  </header>
+
+  <main id="feed-container">
+    <!-- Feed Items will be loaded here -->
+  </main>
+
+  <template id="feed-item-template">
+    <div class="feed-item">
+      <div class="feed-header">
+        <img class="avatar" src="assets/default-avatar.png" alt="Avatar" />
+        <div class="user-info">
+          <span class="username"></span>
+          <span class="time"></span>
+        </div>
+      </div>
+      <div class="feed-content"></div>
+      <div class="feed-actions">
+        <button class="btn-vote">👍 Vote</button>
+        <button class="btn-tip">🎁 Tip</button>
+        <span class="tip-count">0 Token</span>
+      </div>
+      <div class="feed-comments">
+        <textarea class="comment-input" placeholder="Write a comment..."></textarea>
+        <button class="btn-comment">Reply</button>
+        <div class="comments-list"></div>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    const feedContainer = document.getElementById('feed-container');
+    const template = document.getElementById('feed-item-template');
+
+    fetch('data/feed.json')
+      .then((res) => res.json())
+      .then((data) => {
+        data.forEach((item) => {
+          const clone = template.content.cloneNode(true);
+          clone.querySelector('.username').textContent = item.username;
+          clone.querySelector('.time').textContent = item.time;
+          clone.querySelector('.feed-content').textContent = item.content;
+          clone.querySelector('.tip-count').textContent = `${item.tips || 0} Token`;
+          clone.querySelector('.btn-vote').addEventListener('click', () => toast(`You voted for ${item.username}`));
+          clone.querySelector('.btn-tip').addEventListener('click', () => tipUser(item.username, 1));
+          clone.querySelector('.btn-comment').addEventListener('click', (e) => {
+            const comment = e.target.previousElementSibling.value;
+            if (comment) toast(`Commented: ${comment}`);
+          });
+          feedContainer.appendChild(clone);
+        });
+      });
+
+    function tipUser(user, amount) {
+      toast(`You tipped ${user} ${amount} Token`);
+      // Future: log token tips and update JSON/database
+    }
+  </script>
+</body>
+</html>
