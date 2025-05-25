@@ -1,92 +1,134 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Republic Web3 App Store</title>
+  <title>Republic - Web3 App Store</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="libs/ui.js"></script>
-  <script src="libs/wallet.js"></script>
-  <script src="libs/ai.js"></script>
+  <script src="libs/ui.js" defer></script>
+  <script src="libs/wallet.js" defer></script>
+  <script src="libs/token.js" defer></script>
+  <script src="libs/ai.js" defer></script>
+  <script src="libs/analytics.js" defer></script>
+  <script src="libs/review.js" defer></script>
+  <script src="libs/web3.min.js"></script>
+  <link rel="icon" href="assets/logo.png" />
+  <style>
+    body {
+      background: linear-gradient(to right, #1e1e2f, #2d2d44);
+      color: #f5f5f5;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: #111;
+      border-bottom: 2px solid #333;
+    }
+    header h1 {
+      font-size: 1.5rem;
+      color: #ff3b3f;
+    }
+    #connect-btn {
+      padding: 0.5rem 1rem;
+      background: #ff3b3f;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    main {
+      padding: 2rem;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .app-card {
+      background: #222;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+    .app-card:hover {
+      transform: translateY(-5px);
+    }
+    .app-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
+    .app-card h2 {
+      font-size: 1.1rem;
+      margin: 0.8rem;
+    }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-around;
+      background: #111;
+      border-top: 2px solid #333;
+      padding: 0.5rem 0;
+    }
+    .bottom-nav a {
+      color: #f5f5f5;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.5rem;
+      transition: color 0.2s;
+    }
+    .bottom-nav a:hover {
+      color: #ff3b3f;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans">
-
-  <!-- Hero -->
-  <section class="bg-cover bg-center min-h-[60vh] flex items-center justify-center text-center relative" style="background-image: url('assets/bg-hero.jpg')">
-    <div class="absolute inset-0 bg-black/60"></div>
-    <div class="relative z-10 p-8 max-w-2xl">
-      <img src="assets/logo.png" alt="Logo" class="mx-auto w-20 h-20 mb-4 rounded-full" />
-      <h1 class="text-4xl font-bold mb-2">Republic Web3 App Store</h1>
-      <p class="text-lg text-gray-300 mb-4">รวมสุดยอดแอป DeFi | AI | NFT | GameFi บนโลก Web3</p>
-      <button onclick="connectWallet()" class="btn-primary px-6 py-2 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-semibold">🔗 Connect Wallet</button>
-    </div>
-  </section>
-
-  <!-- Search / Filter -->
-  <div class="p-4 flex flex-wrap items-center justify-between gap-4">
-    <input type="text" id="searchInput" placeholder="ค้นหาแอป..." class="w-full md:w-1/3 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800" />
-    <select id="filterChain" class="px-4 py-2 rounded-lg border dark:border-gray-700 bg-white dark:bg-gray-800">
-      <option value="">ทุกเครือข่าย</option>
-      <option value="Ethereum">Ethereum</option>
-      <option value="Polygon">Polygon</option>
-    </select>
-    <button onclick="toggleTheme()" class="btn-secondary">🌓 เปลี่ยนธีม</button>
-  </div>
-
-  <!-- App Cards -->
-  <div id="appList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-    <!-- Cards will be injected here by JS -->
-  </div>
-
-  <!-- Footer -->
-  <footer class="text-center text-gray-400 py-6 text-sm border-t dark:border-gray-700 mt-10">
-    © 2025 Republic Web3 · Powered by NovaVault & Community ✨
-  </footer>
-
-  <!-- Script -->
+<body>
+  <header>
+    <h1>Republic</h1>
+    <button id="connect-btn">Connect Wallet</button>
+  </header>
+  <main>
+    <h2>แอปแนะนำวันนี้</h2>
+    <div class="app-grid" id="app-list"></div>
+  </main>
+  <nav class="bottom-nav">
+    <a href="call.html">โทร</a>
+    <a href="chat.html">แชท</a>
+    <a href="ai.html">AI</a>
+    <a href="community.html">คอมมูนิตี้</a>
+    <a href="feed.html">ฟีด</a>
+  </nav>
   <script>
-    let apps = [];
-
-    async function loadApps() {
-      const res = await fetch('data/apps.json');
-      apps = await res.json();
-      renderApps(apps);
-    }
-
-    function renderApps(appList) {
-      const container = document.getElementById('appList');
-      container.innerHTML = '';
-      appList.forEach(app => {
-        const card = document.createElement('div');
-        card.className = 'bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transition p-4 flex flex-col justify-between';
-        card.innerHTML = `
-          <img src="${app.icon}" class="w-16 h-16 mx-auto mb-4 rounded-full" />
-          <h2 class="text-xl font-bold text-center mb-1">${app.name}</h2>
-          <p class="text-center text-sm text-gray-500 mb-2">${app.description}</p>
-          <div class="flex justify-center gap-2 mb-4">
-            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-600 rounded">${app.chain}</span>
-            <span class="text-xs px-2 py-1 bg-green-100 text-green-600 rounded">${app.level || 'Lv.1'}</span>
-          </div>
-          <a href="app.html?id=${app.id}" class="mt-auto text-center block bg-purple-600 hover:bg-purple-700 text-white py-2 rounded">ดูแอป</a>
-        `;
-        container.appendChild(card);
+    fetch('data/apps.json')
+      .then(res => res.json())
+      .then(apps => {
+        const list = document.getElementById('app-list');
+        apps.forEach(app => {
+          const card = document.createElement('div');
+          card.className = 'app-card';
+          card.innerHTML = `
+            <img src="${app.image}" alt="${app.name}" />
+            <h2>${app.name}</h2>
+          `;
+          card.onclick = () => location.href = `app.html?id=${app.id}`;
+          list.appendChild(card);
+        });
       });
-    }
-
-    // Search / Filter
-    document.getElementById('searchInput').addEventListener('input', () => {
-      const keyword = document.getElementById('searchInput').value.toLowerCase();
-      const filtered = apps.filter(app => app.name.toLowerCase().includes(keyword));
-      renderApps(filtered);
-    });
-
-    document.getElementById('filterChain').addEventListener('change', () => {
-      const chain = document.getElementById('filterChain').value;
-      const filtered = chain ? apps.filter(app => app.chain === chain) : apps;
-      renderApps(filtered);
-    });
-
-    loadApps();
   </script>
 </body>
 </html>
+
