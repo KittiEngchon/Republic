@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>คอมมูนิตี้ | Republic</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="libs/ui.js"></script>
+  <script src="libs/wallet.js"></script>
+  <script src="libs/community.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Community Zone</h1>
+    <nav>
+      <button onclick="switchCommunity('nun')">แม่ชี</button>
+      <button onclick="switchCommunity('loki')">โลกี</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="post-form">
+      <textarea id="new-post-content" placeholder="เขียนสิ่งที่คุณอยากแบ่งปัน..."></textarea>
+      <button onclick="submitPost()">โพสต์</button>
+    </section>
+
+    <section id="community-posts"></section>
+
+    <template id="post-template">
+      <div class="post-card">
+        <div class="post-header">
+          <span class="author-name"></span>
+          <span class="tip-total"></span>
+        </div>
+        <div class="post-content"></div>
+        <div class="post-actions">
+          <button onclick="votePost(this)">👍</button>
+          <button onclick="tipPost(this)">💰 Tip</button>
+          <button onclick="toggleComments(this)">💬 แสดงความคิดเห็น</button>
+        </div>
+        <div class="post-comments hidden">
+          <div class="comments-list"></div>
+          <input type="text" class="comment-input" placeholder="เขียนความคิดเห็น..." />
+          <button onclick="submitComment(this)">ส่ง</button>
+        </div>
+      </div>
+    </template>
+
+    <section id="ranking">
+      <h2>อันดับยอด Tip สูงสุด</h2>
+      <ul id="ranking-list"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <nav>
+      <a href="index.html">🏠</a>
+      <a href="chat.html">💬</a>
+      <a href="ai.html">🧠</a>
+      <a href="community.html" class="active">🌐</a>
+      <a href="feed.html">📢</a>
+    </nav>
+  </footer>
+</body>
+</html>
